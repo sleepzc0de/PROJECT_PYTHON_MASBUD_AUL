@@ -1,0 +1,10 @@
+# requirements.txt
+flask
+pandas
+numpy
+scikit-learn
+matplotlib
+openpyxl
+jcopml
+joblib
+werkzeug
