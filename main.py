@@ -28,6 +28,7 @@ df_pivot = df_sbk.pivot_table(
     aggfunc='sum'
 )
 
+# DATA CLEANSING
 numerical_pipeline = Pipeline([
     ('imputer', SimpleImputer(strategy='mean')),
     ('scaler', MinMaxScaler())
@@ -44,7 +45,7 @@ y = df_sbk["luas_sbsk"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 preprocessor = ColumnTransformer([
-    ('numeric', numerical_pipeline, ['menteri', 'wamen',
+    ('numeric', numerical_pipeline(scal), ['menteri', 'wamen',
        'es_ia_kk', 'es_ia_nkk', 'es_ib', 'es_iia_kk', 'es_iia_nkk', 'es_iib',
        'es_iii_kk', 'es_iii_nkk', 'es_iv_kk', 'es_iv_nkk', 'es_v', 'f-iv',
        'f-iii', 'pelaksana', 'jumlah_pegawai', 'jumlah_pengunjung',
@@ -64,5 +65,5 @@ pipeline.fit(X_train, y_train)
 pipeline.score(X_train, y_train)
 
 # DUMP PIPLINE
-joblib.dump(pipeline, 'ml_pipeline.joblib')
+# joblib.dump(pipeline, 'ml_pipeline.joblib')
 
